@@ -1,3 +1,3 @@
 # Leetcode
 
-LeetCode题目的JS代码
+[LeetCode](https://leetcode.com/problemset/algorithms/)题目的JS代码
