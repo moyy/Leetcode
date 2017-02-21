@@ -11,22 +11,27 @@
  * @return {void} Do not return anything, modify nums in-place instead.
  * [1,2,3,4,5,6,7] --> [7,6,5,4,3,2,1] --> [5,6,7,4,3,2,1] --> [5,6,7,1,2,3,4]
  */
-var rotate = function(nums, k) {
-    nums.reverse();
-    
-    while (k > nums.length) {
-        k -= nums.length;
-    }
 
-    for (var i = 0; i < Math.floor(k / 2); ++i) {
-        var t = nums[i];
-        nums[i] = nums[k - i - 1];
-        nums[k - i - 1] = t;
+// 用迭代器类似的方法来实现最好，不要用整数除法
+var reverse = function (array, start, end) {
+    while (start < end) {
+        var temp = array[start];
+        array[start] = array[end];
+        array[end] = temp;
+        ++start;
+        --end;
     }
+}
+
+// 三次反转：[1,2,3,4,5,6,7]  -> [7,6,5,4,3,2,1] -> [5,6,7,4,3,2,1] --> [5,6,7,1,2,3,4]
+var rotate = function(nums, k) {
     
-    for (var i = 0; i < Math.floor((nums.length - k) / 2); ++i) {
-        var t = nums[i + k];
-        nums[i + k] = nums[nums.length - i - 1];
-        nums[nums.length - i - 1] = t;
-    }
+    reverse(nums, 0, nums.length - 1);
+
+    // 如果k大于数组长度，减掉，效果一样
+    k %= nums.length;
+
+    reverse(nums, 0, k - 1);
+
+    reverse(nums, k, nums.length - 1);
 };

@@ -22,3 +22,5 @@ var missingNumber = function(nums) {
     
     return len * (len + 1) / 2 - sum;
 };
+
+// 可以用异或来做，但是异或对js性能不高。
