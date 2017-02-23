@@ -49,3 +49,19 @@ var maxSubArray = function (nums) {
 
     return max;
 };
+
+// 进一步优化：因为A[0,i] 只涉及到 A[0,i-1]，所以保存一个变量就可以了。
+var maxSubArray = function (nums) {
+    var n = nums.length;
+    
+    var dp = nums[0];
+    
+    var max = dp;
+
+    for (var i = 1; i < n; ++i) {
+        dp = nums[i] + (dp > 0 ? dp : 0);
+        max = Math.max(max, dp);
+    }
+
+    return max;
+};
